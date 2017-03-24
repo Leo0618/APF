@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">APF</string>
+
+    <string name="temp">--</string>
+    <string name="cancle">取消</string>
+    <string name="sure">确定</string>
+    <string name="reset">重置</string>
+    <string name="submmit">提交</string>
+    <string name="quite">退出</string>
+    <string name="know">我知道了</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="hint_exit_app">再按一次退出</string>
+    <string name="hint_failed">数据载入失败</string>
+    <string name="hint_no_data">暂无数据</string>
+    <string name="hint_data_loading">数据载入中</string>
+    <string name="hint_permission_splash">在使用APP之前，请您允许必要的权限</string>
+    
+</resources>

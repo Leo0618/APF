@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_primary">#3F51B5</color>
+    <color name="bg_primary_deep">#303F9F</color>
+    <color name="bg_window">#F3F6F5</color>
+    <color name="bg_window_deep">#EAEDED</color>
+    <color name="accent">#FF4081</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_translucent">#B2000000</color>
+    <color name="red_light">#EF534E</color>
+    <color name="red_deep">#D3433E</color>
+    <color name="green_light">#3A7E33</color>
+    <color name="orange_light">#FF9732</color>
+    <color name="purple">#7068e2</color>
+
+</resources>

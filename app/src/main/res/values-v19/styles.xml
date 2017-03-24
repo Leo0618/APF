@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="AppThemeBase">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@color/bg_window</item>
+    </style>
+
+    <!--启动闪屏页主题-->
+    <style name="AppThemeForSplashActivity" parent="AppTheme">
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+</resources>

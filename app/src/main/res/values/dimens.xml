@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="statusbar">25dp</dimen>
+    <dimen name="titlebar">55dp</dimen>
+    <dimen name="titlebar_with_statusbar">80dp</dimen>
+</resources>

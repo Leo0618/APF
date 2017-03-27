@@ -85,7 +85,20 @@
 
 # keep 泛型
 -keepattributes Signature
+-keepattributes SourceFile,LineNumberTable
 
+##################################################################### 项目特殊处理
+# javabean
+-keep class com.leo618.apf.bean.** { *; }
+-dontwarn com.leo618.hellome.hello.bean.**
+
+#net cookie
+-keep class com.leo618.apf.manager.net.cookie.** { *; }
+
+-keep class com.lzj.appupdate.** { *; }
+-dontwarn com.lzj.appupdate.**
+
+##################################################################### 第三方SDK
 # fastjson
 -keep class com.alibaba.fastjson.**{*;}
 -dontwarn com.alibaba.fastjson.**
@@ -101,28 +114,28 @@
 -keep class butterknife.** { *; }
 -dontwarn butterknife.internal.**
 -keep class **$$ViewBinder { *; }
-
 -keep class **$$ViewInjector { *; }
 -keepnames class * { @butterknife.InjectView *;}
-
 -keepclasseswithmembernames class * {
     @butterknife.* <fields>;
 }
-
 -keepclasseswithmembernames class * {
     @butterknife.* <methods>;
 }
 
-##################################################################### 项目特殊处理
-# javabean
--keep class com.leo618.hellome.libcore.base.BaseBean { *; }
--keep class com.leo618.hellome.hello.bean.** { *; }
--keep class com.leo618.hellome.hello.bean.local.** { *; }
--dontwarn com.leo618.hellome.hello.bean.**
+#### greenDao
+-keep class de.greenrobot.dao.** {*;}
+-keepclassmembers class * extends de.greenrobot.dao.AbstractDao {
+    public static Java.lang.String TABLENAME;
+}
+-keep class **$Properties
 
-#net cookie
--keep class com.leo618.hellome.libcore.manager.net.cookie.** { *; }
-
-
--keepattributes SourceFile,LineNumberTable
-##################################################################### 项目特殊处理 第三方SDK
+# rxAndroid
+-keep class io.reactivex.android.**{*;}
+-dontwarn io.reactivex.android.**
+# rxJava
+-keep class io.reactivex.**{*;}
+-dontwarn io.reactivex.**
+# reactivestreams
+-keep class org.reactivestreams.**{*;}
+-dontwarn org.reactivestreams.**

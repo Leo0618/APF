@@ -1,9 +1,9 @@
 package com.leo618.apf.ui.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Process;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
@@ -14,10 +14,14 @@ import com.leo618.apf.common.DeviceInfo;
 import com.leo618.apf.manager.EasyActionManager;
 import com.leo618.apf.manager.StatisticsManager;
 import com.leo618.apf.utils.IntentLauncher;
+import com.leo618.mpermission.AfterPermissionGranted;
+import com.leo618.mpermission.MPermission;
+import com.leo618.mpermission.MPermissionSettingsDialog;
 import com.leo618.utils.FileStorageUtil;
-import com.leo618.utils.PermissionUtil;
 import com.leo618.utils.SPUtil;
 import com.leo618.utils.UIUtil;
+
+import java.util.List;
 
 /**
  * function:启动页
@@ -25,51 +29,67 @@ import com.leo618.utils.UIUtil;
  * <p></p>
  * Created by lzj on 2016/1/28.
  */
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements MPermission.PermissionCallbacks {
+    private static final int CODE_REQ_INIT_PERS = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        //6.0 or uper
+        checkInitPermissions();
+    }
+
+    /** 在启动页添加进去app必要的权限确认 */
+    @AfterPermissionGranted(CODE_REQ_INIT_PERS)
+    private void checkInitPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             String[] permissions = new String[]{
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE,
                     Manifest.permission.READ_PHONE_STATE
             };
-            String[] resultPermissions = PermissionUtil.needCheckPermissions(permissions);
-            if (resultPermissions.length == 0) {
-                handleResultAfterInitpermissions();
+            if (MPermission.hasPermissions(this, permissions)) {
+                handleAfterPermissions();
             } else {
-                requestPermissions(resultPermissions, 100);
+                MPermission.requestPermissions(this, "请授权以获取更完善的体验", CODE_REQ_INIT_PERS, permissions);
             }
         } else {
-            handleResultAfterInitpermissions();
+            handleAfterPermissions();
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 100 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (PermissionUtil.passPermissions(grantResults)) {
-                handleResultAfterInitpermissions();
-            } else {
-                UIUtil.showToastShort(getString(R.string.hint_permission_splash));
-                finish();
-                Process.killProcess(Process.myPid());
-            }
+        MPermission.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (MPermission.somePermissionPermanentlyDenied(this, perms)) {
+            new MPermissionSettingsDialog.Builder(this).build().show();
         }
     }
 
-    private void handleResultAfterInitpermissions() {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //从设置应用详情页返回
+        if (requestCode == MPermissionSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
+            checkInitPermissions();
+        }
+    }
+
+    private void handleAfterPermissions() {
         FileStorageUtil.initAppDir();//初始化应用文件目录
         DeviceInfo.init(getApplicationContext());// 初始化设备信息
         CrashHandler.init(getApplicationContext());// 异常捕获初始化
         UIUtil.postDelayed(mDelayEnterRunnabe, 2000);//延时进入
     }
-
 
     private Runnable mDelayEnterRunnabe = new Runnable() {
         @Override

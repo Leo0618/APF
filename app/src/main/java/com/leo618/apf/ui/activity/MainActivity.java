@@ -1,5 +1,7 @@
 package com.leo618.apf.ui.activity;
 
+import android.view.View;
+
 import com.leo618.apf.R;
 import com.leo618.apf.base.BaseActivity;
 
@@ -17,6 +19,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void doBusiness() {
+
+    }
+
+    public void getMsg(View view) {
 
     }
 }

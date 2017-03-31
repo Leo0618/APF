@@ -1,4 +1,4 @@
-package com.leo618.apf.manager.net;
+package com.leo618.apf.manager.net.okhttpwrap;
 
 import android.annotation.SuppressLint;
 import android.os.Handler;
@@ -7,7 +7,7 @@ import android.text.TextUtils;
 
 import com.leo618.apf.MyApp;
 import com.leo618.apf.interf.IRequestCallback;
-import com.leo618.apf.manager.net.cookie.PersistentCookieStore;
+import com.leo618.apf.manager.net.okhttpwrap.cookie.PersistentCookieStore;
 import com.leo618.utils.FileStorageUtil;
 import com.leo618.utils.LogUtil;
 import com.leo618.utils.PackageManagerUtil;

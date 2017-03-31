@@ -17,7 +17,7 @@ import com.leo618.apf.event.LoginStateChangeEvent;
 import com.leo618.apf.manager.EventManager;
 import com.leo618.apf.manager.JsonManager;
 import com.leo618.apf.manager.StatisticsManager;
-import com.leo618.apf.manager.net.NetManager;
+import com.leo618.apf.manager.net.okhttpwrap.NetManager;
 import com.leo618.apf.ui.activity.SplashActivity;
 import com.leo618.utils.SPUtil;
 

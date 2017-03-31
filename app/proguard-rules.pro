@@ -14,6 +14,8 @@
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 #保护注解
 -keepattributes *Annotation*
+-dontwarn javax.annotation.**
+-dontwarn javax.inject.**
 #忽略警告
 -ignorewarning
 -dontwarn
@@ -93,7 +95,7 @@
 -dontwarn com.leo618.hellome.hello.bean.**
 
 #net cookie
--keep class com.leo618.apf.manager.net.cookie.** { *; }
+-keep class com.leo618.apf.manager.net.okhttpwrap.cookie.** { *; }
 
 -keep class com.lzj.appupdate.** { *; }
 -dontwarn com.lzj.appupdate.**
@@ -139,3 +141,13 @@
 # reactivestreams
 -keep class org.reactivestreams.**{*;}
 -dontwarn org.reactivestreams.**
+
+# OkHttp3
+-dontwarn okhttp3.logging.**
+-keep class okhttp3.internal.**{*;}
+-dontwarn okio.**
+
+# Retrofit
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature-keepattributes Exceptions

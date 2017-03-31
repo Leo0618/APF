@@ -8,7 +8,7 @@ import android.support.multidex.MultiDex;
 
 import com.leo618.apf.common.Configs;
 import com.leo618.apf.manager.StatisticsManager;
-import com.leo618.apf.manager.net.OkHttpClientWrap;
+import com.leo618.apf.manager.net.okhttpwrap.OkHttpClientWrap;
 import com.leo618.utils.AndroidUtilsCore;
 import com.lzj.appupdate.UpdateManager;
 

@@ -6,7 +6,7 @@ import com.leo618.apf.base.BaseBean;
 import com.leo618.apf.common.Const;
 import com.leo618.apf.interf.IActionCallback;
 import com.leo618.apf.interf.IRequestCallback;
-import com.leo618.apf.manager.net.NetManager;
+import com.leo618.apf.manager.net.okhttpwrap.NetManager;
 import com.leo618.utils.PackageManagerUtil;
 import com.leo618.utils.SPUtil;
 import com.leo618.utils.UIUtil;
